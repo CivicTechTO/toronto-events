@@ -24,7 +24,11 @@ try:
 except ImportError:
     tqdm = None
 
-from geo_filter import GeoFilter
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
+
+from toronto_events.core.geo_filter import GeoFilter
 
 # Configure logging
 logging.basicConfig(

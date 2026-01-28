@@ -16,7 +16,11 @@ from dataclasses import dataclass, field, asdict
 from typing import Iterator, Optional
 from collections import defaultdict
 
-from nquads_parser import NQuadsParser, Quad, group_by_subject
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
+
+from toronto_events.core.nquads_parser import NQuadsParser, Quad, group_by_subject
 
 # Configure logging
 logging.basicConfig(

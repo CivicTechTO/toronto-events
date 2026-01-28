@@ -1,11 +1,33 @@
 [project]
 name = "toronto-events"
 version = "0.1.0"
-description = "Add your description here"
+description = "Data pipeline to identify high-quality event sources in Toronto and the GTA from Web Data Commons"
 readme = "README.md"
 requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [
+    { name = "CivicTechTO", email = "organize@civictech.ca" }
+]
+keywords = ["toronto", "events", "civic-tech", "open-data", "schema-org", "web-data-commons"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
 dependencies = [
     "orjson>=3.11.5",
     "regex>=2026.1.15",
     "tqdm>=4.67.1",
 ]
+
+[project.urls]
+Homepage = "https://github.com/CivicTechTO/toronto-events"
+Repository = "https://github.com/CivicTechTO/toronto-events"
+Issues = "https://github.com/CivicTechTO/toronto-events/issues"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
