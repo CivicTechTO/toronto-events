@@ -1,0 +1,527 @@
+[
+  {
+    "domain": "umichtoronto.org",
+    "classification": "confirmed",
+    "confidence_score": 0.7,
+    "total_events": 11,
+    "gta_events": 11,
+    "gta_percentage": 100.0,
+    "postal_matches": 11,
+    "coord_matches": 0,
+    "locality_matches": 0,
+    "sample_events": "UM vs Ohio State | UM vs Michigan State University",
+    "match_reasons": "postal_code:Toronto",
+    "events": [
+      {
+        "name": "UM vs Ohio State",
+        "url": "https://umichtoronto.org/event/um-vs-ohio-state-2024/",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      },
+      {
+        "name": "UM vs Michigan State University",
+        "url": "https://umichtoronto.org/event/um-vs-msu-2022/",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      },
+      {
+        "name": "UM vs UNLV",
+        "url": "https://umichtoronto.org/event/um-vs-unlv-2023/",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      },
+      {
+        "name": "UM vs Indiana",
+        "url": "https://umichtoronto.org/event/um-vs-indiana-2023/",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      },
+      {
+        "name": "UM vs Penn State",
+        "url": "https://umichtoronto.org/event/um-vs-pennst-2023/",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      },
+      {
+        "name": "UM vs Ohio State",
+        "url": "https://umichtoronto.org/event/um-vs-ohiost-2023/",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      },
+      {
+        "name": "Michigan v Alabama &#8211; CFP Semifinal Game",
+        "url": "https://umichtoronto.org/event/michigan-v-alabama-cfp-semifinal-game/",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      },
+      {
+        "name": "Michigan v Washington &#8211; CFP National Championship Game",
+        "url": "https://umichtoronto.org/event/michigan-v-washington-national-championship/",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      },
+      {
+        "name": "UM vs Texas",
+        "url": "https://umichtoronto.org/event/um-vs-texas-2024/",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      },
+      {
+        "name": "UM vs Ohio State",
+        "url": "https://umichtoronto.org/event/um-vs-osu-2022/",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      },
+      {
+        "name": "2022 College Football Playoff Semifinal (Fiesta Bowl) UM vs TCU",
+        "url": "https://umichtoronto.org/event/um-vs-tcu-fiestabowl-2022/",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      }
+    ]
+  },
+  {
+    "domain": "www.kleinburgchristian.ca",
+    "classification": "possible",
+    "confidence_score": 0.32,
+    "total_events": 15,
+    "gta_events": 5,
+    "gta_percentage": 33.3,
+    "postal_matches": 0,
+    "coord_matches": 0,
+    "locality_matches": 5,
+    "sample_events": "2024 KCA March Break | All School Chapel",
+    "match_reasons": "locality:vaughan | locality_partial:kleinburg",
+    "events": [
+      {
+        "name": "2024 KCA March Break ",
+        "url": "https://www.kleinburgchristian.ca/event-details/2024-kca-march-break",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      },
+      {
+        "name": "All School Chapel ",
+        "url": "https://www.kleinburgchristian.ca/event-details/all-school-chapel-3",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      },
+      {
+        "name": "Easter Chapel",
+        "url": "https://www.kleinburgchristian.ca/event-details/easter-chapel-1",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      },
+      {
+        "name": "Fair Glen Camp (Grade 5-8) - Day 3",
+        "url": "https://www.kleinburgchristian.ca/event-details/fair-glen-camp-grade-5-8-day-3",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      },
+      {
+        "name": "FRIDAY HOT LUNCH",
+        "url": "https://www.kleinburgchristian.ca/event-details/friday-hot-lunch",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      },
+      {
+        "name": "KCA Year-end Assembly &amp; Noon dismissal and BBQ",
+        "url": "https://www.kleinburgchristian.ca/event-details/kca-year-end-assembly-noon-dismissal-and-bbq",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      },
+      {
+        "name": "Pizza Lunch",
+        "url": "https://www.kleinburgchristian.ca/event-details/pizza-lunch-2023-04-24-00-00",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      },
+      {
+        "name": "Pizza Lunch",
+        "url": "https://www.kleinburgchristian.ca/event-details/pizza-lunch-2023-05-08-12-00",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      },
+      {
+        "name": "Pizza Lunch",
+        "url": "https://www.kleinburgchristian.ca/event-details/pizza-lunch-2023-05-22-12-00",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      },
+      {
+        "name": "Pizza Lunch Day",
+        "url": "https://www.kleinburgchristian.ca/event-details/pizza-lunch-day-2022-10-10-12-00",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      },
+      {
+        "name": "Pizza Lunch Day",
+        "url": "https://www.kleinburgchristian.ca/event-details/pizza-lunch-day-2022-10-31-12-00",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      },
+      {
+        "name": "Pizza Lunch Day",
+        "url": "https://www.kleinburgchristian.ca/event-details/pizza-lunch-day-2022-12-19-12-00",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      },
+      {
+        "name": "Primary Skating SK-3",
+        "url": "https://www.kleinburgchristian.ca/event-details/primary-skating-sk-3-2024-01-24-14-00",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      },
+      {
+        "name": "Professional Day - No School",
+        "url": "https://www.kleinburgchristian.ca/event-details/professional-day-no-school",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      },
+      {
+        "name": "School Photo Day",
+        "url": "https://www.kleinburgchristian.ca/event-details/school-photo-day",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      }
+    ]
+  },
+  {
+    "domain": "umei.ca",
+    "classification": "review",
+    "confidence_score": 0.0,
+    "total_events": 12,
+    "gta_events": 0,
+    "gta_percentage": 0.0,
+    "postal_matches": 0,
+    "coord_matches": 0,
+    "locality_matches": 0,
+    "sample_events": "Chili Cook-off &amp; Grade 11 Play | Chili Cook-off & Grade 11 Play",
+    "match_reasons": "",
+    "events": [
+      {
+        "name": "Chili Cook-off &amp; Grade 11 Play",
+        "url": "https://umei.ca/events/chili-cook-off-grade-11-play/",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": false,
+        "has_dates": false
+      },
+      {
+        "name": "Chili Cook-off & Grade 11 Play",
+        "url": "https://umei.ca/events/chili-cook-off-grade-11-play/",
+        "start_date": "2019-12-1T11:30-5:00",
+        "end_date": "2019-12-1T14:00-5:00",
+        "location": "",
+        "has_location": false,
+        "has_dates": true
+      },
+      {
+        "name": "Easter Holidays",
+        "url": "https://umei.ca/events/easter-holidays-2/",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": false,
+        "has_dates": false
+      },
+      {
+        "name": "Easter Holidays",
+        "url": "https://umei.ca/events/easter-holidays-2/",
+        "start_date": "2018-3-30",
+        "end_date": "2018-4-2",
+        "location": "",
+        "has_location": false,
+        "has_dates": true
+      },
+      {
+        "name": "Grade 9 Orientation BBQ",
+        "url": "https://umei.ca/events/grade-9-orientation-bbq-2/",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": false,
+        "has_dates": false
+      },
+      {
+        "name": "Grade 9 Orientation BBQ",
+        "url": "https://umei.ca/events/grade-9-orientation-bbq-2/",
+        "start_date": "2018-8-30T11:00-5:00",
+        "end_date": "2018-8-30T14:00-5:00",
+        "location": "",
+        "has_location": false,
+        "has_dates": true
+      },
+      {
+        "name": "Homecoming Weekend",
+        "url": "https://umei.ca/events/homecoming-weekend/",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": false,
+        "has_dates": false
+      },
+      {
+        "name": "Homecoming Weekend",
+        "url": "https://umei.ca/events/homecoming-weekend/",
+        "start_date": "2023-9-22T20:00-5:00",
+        "end_date": "2023-9-22T22:00-5:00",
+        "location": "",
+        "has_location": false,
+        "has_dates": true
+      },
+      {
+        "name": "Lightning Bolt",
+        "url": "https://umei.ca/events/lightning-bolt/",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": false,
+        "has_dates": false
+      },
+      {
+        "name": "Lightning Bolt",
+        "url": "https://umei.ca/events/lightning-bolt/",
+        "start_date": "2019-9-28T09:00-5:00",
+        "end_date": "2019-9-28T11:00-5:00",
+        "location": "",
+        "has_location": false,
+        "has_dates": true
+      },
+      {
+        "name": "March Break",
+        "url": "https://umei.ca/events/march-break-2/",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": false,
+        "has_dates": false
+      },
+      {
+        "name": "March Break",
+        "url": "https://umei.ca/events/march-break-2/",
+        "start_date": "2018-3-12",
+        "end_date": "2018-3-16",
+        "location": "",
+        "has_location": false,
+        "has_dates": true
+      }
+    ]
+  },
+  {
+    "domain": "umsu.ca",
+    "classification": "review",
+    "confidence_score": 0.0,
+    "total_events": 11,
+    "gta_events": 0,
+    "gta_percentage": 0.0,
+    "postal_matches": 0,
+    "coord_matches": 0,
+    "locality_matches": 0,
+    "sample_events": "Bison Bash Market | Karaoke Night",
+    "match_reasons": "",
+    "events": [
+      {
+        "name": "Bison Bash Market",
+        "url": "https://umsu.ca/event/bisonbashmarket/",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      },
+      {
+        "name": "Karaoke Night",
+        "url": "https://umsu.ca/event/karaoke-night/2024-10-08/",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      },
+      {
+        "name": "Karaoke Night",
+        "url": "https://umsu.ca/event/karaoke-night/2024-10-22/",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      },
+      {
+        "name": "Karaoke Night",
+        "url": "https://umsu.ca/event/karaoke-night/2024-10-29/",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      },
+      {
+        "name": "Karaoke Night",
+        "url": "https://umsu.ca/event/karaoke-night/2024-11-05/",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      },
+      {
+        "name": "Karaoke Night",
+        "url": "https://umsu.ca/event/karaoke-night/2024-11-12/",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      },
+      {
+        "name": "Karaoke Night",
+        "url": "https://umsu.ca/event/karaoke-night/2024-11-19/",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      },
+      {
+        "name": "Karaoke Night",
+        "url": "https://umsu.ca/event/karaoke-night/2024-11-26/",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      },
+      {
+        "name": "Karaoke Night",
+        "url": "https://umsu.ca/event/karaoke-night/2024-12-03/",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      },
+      {
+        "name": "Karaoke Night",
+        "url": "https://umsu.ca/event/karaoke-night/2024-12-10/",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      },
+      {
+        "name": "Karaoke Night",
+        "url": "https://umsu.ca/event/karaoke-night/2024-10-15/",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      }
+    ]
+  },
+  {
+    "domain": "www.umpireoba.ca",
+    "classification": "review",
+    "confidence_score": 0.0,
+    "total_events": 1,
+    "gta_events": 0,
+    "gta_percentage": 0.0,
+    "postal_matches": 0,
+    "coord_matches": 0,
+    "locality_matches": 0,
+    "sample_events": "Umpire Accelerated Course 2023",
+    "match_reasons": "",
+    "events": [
+      {
+        "name": "Umpire Accelerated Course 2023",
+        "url": "https://www.umpireoba.ca/event-details/umpire-accelerated-course-2023-2023-03-05-19-00",
+        "start_date": "",
+        "end_date": "",
+        "location": "",
+        "has_location": true,
+        "has_dates": false
+      }
+    ]
+  }
+]

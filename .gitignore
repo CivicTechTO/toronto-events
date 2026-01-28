@@ -1,0 +1,43 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# UV lock file (optional - remove if you want reproducible builds)
+# uv.lock
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Data files (large, downloadable from source)
+data/raw/
+data/intermediate/
+*.gz
+*.ndjson
+
+# Keep data/processed for outputs
+!data/processed/
+
+# Logs
+*.log
+download.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local config
+.env
+.env.local
+
+# Validation state (user-specific)
+validation_ui/validation_state.json

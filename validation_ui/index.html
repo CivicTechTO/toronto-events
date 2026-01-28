@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domain Classification Validator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>Domain Classification Validator</h1>
+            <div class="header-actions">
+                <span class="save-status" id="saveStatus">✓ Saved</span>
+                <button class="btn btn-secondary" id="exportBtn">Export Validations</button>
+            </div>
+        </header>
+
+        <nav class="tab-nav">
+            <button class="tab-btn active" data-tab="confirmed">
+                Confirmed <span class="badge" id="badge-confirmed">0</span>
+            </button>
+            <button class="tab-btn" data-tab="likely">
+                Likely <span class="badge" id="badge-likely">0</span>
+            </button>
+            <button class="tab-btn" data-tab="possible">
+                Possible <span class="badge" id="badge-possible">0</span>
+            </button>
+            <button class="tab-btn" data-tab="review">
+                Review <span class="badge" id="badge-review">0</span>
+            </button>
+        </nav>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-text" id="progressText">0 / 0 validated</div>
+
+        <main class="domain-list" id="domainList">
+            <!-- Domain cards will be rendered here -->
+        </main>
+
+        <footer class="keyboard-help">
+            <span><kbd>A</kbd> Accept</span>
+            <span><kbd>R</kbd> Reject</span>
+            <span><kbd>U</kbd> Uncertain</span>
+            <span><kbd>N</kbd> Next</span>
+            <span><kbd>P</kbd> Previous</span>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
