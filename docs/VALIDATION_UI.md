@@ -21,7 +21,6 @@ After running the pipeline, some domains are classified as `UNKNOWN` - they lack
 Run the pipeline to generate domains needing review:
 
 ```bash
-cd /home/runner/work/toronto-events/toronto-events
 uv run python scripts/prepare_validation_data.py
 ```
 

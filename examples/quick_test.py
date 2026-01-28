@@ -17,10 +17,16 @@ def run_command(cmd, description):
     print(f"{'='*60}")
     print(f"Running: {' '.join(cmd)}\n")
     
-    result = subprocess.run(cmd)
+    result = subprocess.run(cmd, capture_output=True, text=True)
+    
+    # Show output
+    if result.stdout:
+        print(result.stdout)
     
     if result.returncode != 0:
         print(f"\n❌ Error: {description} failed")
+        if result.stderr:
+            print(f"Error output:\n{result.stderr}")
         return False
     
     print(f"\n✅ {description} completed successfully")

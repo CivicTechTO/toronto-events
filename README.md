@@ -133,6 +133,8 @@ source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 pip install -e .
 ```
 
+**Note**: The scripts use `sys.path` manipulation for imports. For a cleaner setup, install the package in editable mode with `uv pip install -e .` or `pip install -e .`.
+
 ## 📖 Usage
 
 ### Full Pipeline
