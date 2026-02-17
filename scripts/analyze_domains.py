@@ -35,7 +35,7 @@ logger = logging.getLogger(__name__)
 # Paths
 SCRIPT_DIR = Path(__file__).parent
 PROJECT_ROOT = SCRIPT_DIR.parent
-DATA_RAW = PROJECT_ROOT / "data" / "raw"
+DATA_RAW = PROJECT_ROOT / "data" / "raw" / "wdc_events"
 DATA_INTERMEDIATE = PROJECT_ROOT / "data" / "intermediate"
 
 
