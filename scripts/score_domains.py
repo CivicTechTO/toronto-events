@@ -164,17 +164,17 @@ class DomainScorer:
             events_path: Path to extracted_events.ndjson
         """
         logger.info(f"Processing events from {events_path}")
-        
+
         domain_data = defaultdict(lambda: DomainScore(domain=""))
-        
-        # Count lines for progress bar
-        with open(events_path, 'r', encoding='utf-8') as f:
-            total_lines = sum(1 for _ in f)
-        
+
+        # Estimate line count from file size for progress bar (avoids double read)
+        file_size = events_path.stat().st_size
+        est_lines = file_size // 600  # ~600 bytes per event line estimate
+
         with open(events_path, 'r', encoding='utf-8') as f:
             iterator = f
             if tqdm:
-                iterator = tqdm(f, total=total_lines, desc="Scoring events",
+                iterator = tqdm(f, total=est_lines, desc="Scoring events",
                                unit="events", dynamic_ncols=True)
             
             for line in iterator:

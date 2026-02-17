@@ -40,22 +40,56 @@ def load_domain_scores(path: Path) -> list[dict]:
     return domains
 
 
-def load_events(path: Path) -> dict[str, list[dict]]:
-    """Load events grouped by domain."""
-    domain_events = defaultdict(list)
-    
+def _score_event(event: dict) -> int:
+    """Score an event for sample selection (higher = better)."""
+    score = 0
+    if event.get('location'):
+        score += 2
+    if event.get('start_date'):
+        score += 1
+    if event.get('name'):
+        score += 1
+    return score
+
+
+def load_event_samples(path: Path, domain_set: set[str],
+                       samples_per_domain: int = 3) -> dict[str, list[dict]]:
+    """Stream events and keep only the best N samples per domain.
+
+    Instead of loading all events into memory, this streams line-by-line
+    and maintains a small bounded buffer per domain.
+    """
+    domain_samples: dict[str, list[tuple[int, dict]]] = defaultdict(list)
+
     if not path.exists():
-        return domain_events
-    
+        return {}
+
     with open(path, 'r', encoding='utf-8') as f:
         for line in f:
             if not line.strip():
                 continue
             event = json.loads(line)
             domain = event.get('domain', '').lower()
-            domain_events[domain].append(event)
-    
-    return domain_events
+
+            if domain not in domain_set:
+                continue
+
+            score = _score_event(event)
+            buf = domain_samples[domain]
+
+            if len(buf) < samples_per_domain:
+                buf.append((score, event))
+            else:
+                # Replace the lowest-scored sample if this one is better
+                min_idx = min(range(len(buf)), key=lambda i: buf[i][0])
+                if score > buf[min_idx][0]:
+                    buf[min_idx] = (score, event)
+
+    # Strip scores and sort best-first
+    return {
+        domain: [ev for _, ev in sorted(buf, key=lambda x: x[0], reverse=True)]
+        for domain, buf in domain_samples.items()
+    }
 
 
 def generate_event_sources(domains: list[dict], output_path: Path):
@@ -103,34 +137,19 @@ def generate_event_sources(domains: list[dict], output_path: Path):
     return len(ranked)
 
 
-def generate_event_samples(domains: list[dict], events: dict[str, list], 
-                          output_path: Path, samples_per_domain: int = 3):
+def generate_event_samples(domains: list[dict], event_samples: dict[str, list[dict]],
+                          output_path: Path):
     """Generate toronto_event_samples.ndjson - sample events for testing."""
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    
+
     sample_count = 0
-    
+
     with open(output_path, 'w', encoding='utf-8') as f:
         for d in domains:
             if d['classification'] in ('confirmed', 'likely', 'possible'):
                 domain = d['domain'].lower()
-                domain_events = events.get(domain, [])
-                
-                # Select best samples (prefer events with location and dates)
-                scored_events = []
-                for e in domain_events:
-                    score = 0
-                    if e.get('location'):
-                        score += 2
-                    if e.get('start_date'):
-                        score += 1
-                    if e.get('name'):
-                        score += 1
-                    scored_events.append((score, e))
-                
-                scored_events.sort(key=lambda x: x[0], reverse=True)
-                
-                for _, event in scored_events[:samples_per_domain]:
+
+                for event in event_samples.get(domain, []):
                     sample = {
                         'domain': domain,
                         'classification': d['classification'],
@@ -139,7 +158,7 @@ def generate_event_samples(domains: list[dict], events: dict[str, list],
                         'end_date': event.get('end_date'),
                         'source_url': event.get('source_url'),
                     }
-                    
+
                     # Add location if present
                     if event.get('location'):
                         loc = event['location']
@@ -149,10 +168,10 @@ def generate_event_samples(domains: list[dict], events: dict[str, list],
                             'region': loc.get('address_region'),
                             'postal_code': loc.get('postal_code'),
                         }
-                    
+
                     f.write(json.dumps(sample) + '\n')
                     sample_count += 1
-    
+
     logger.info(f"Saved {sample_count} event samples to {output_path}")
     return sample_count
 
@@ -236,18 +255,25 @@ def main():
     # Load data
     logger.info("Loading domain scores...")
     domains = load_domain_scores(args.scores)
-    
-    logger.info("Loading events...")
-    events = load_events(args.events)
-    
+
+    # Build set of relevant domains for bounded event sampling
+    relevant_domains = {
+        d['domain'].lower() for d in domains
+        if d['classification'] in ('confirmed', 'likely', 'possible')
+    }
+
+    logger.info("Streaming events (keeping best 3 samples per domain)...")
+    event_samples = load_event_samples(args.events, relevant_domains,
+                                       samples_per_domain=3)
+
     # Generate outputs
     sources_count = generate_event_sources(
-        domains, 
+        domains,
         args.output_dir / "toronto_event_sources.csv"
     )
-    
+
     samples_count = generate_event_samples(
-        domains, events,
+        domains, event_samples,
         args.output_dir / "toronto_event_samples.ndjson"
     )
     

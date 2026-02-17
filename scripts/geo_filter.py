@@ -358,33 +358,31 @@ def main():
         return 1
     
     geo_filter = GeoFilter()
-    gta_events = []
-    
+    gta_count = 0
+
     logger.info(f"Processing {args.input}...")
-    
-    with open(args.input, 'r', encoding='utf-8') as f:
-        for line in f:
+
+    # Stream directly to disk — no list accumulation
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    with open(args.input, 'r', encoding='utf-8') as fin, \
+         open(args.output, 'w', encoding='utf-8') as fout:
+        for line in fin:
             if not line.strip():
                 continue
-            
+
             event = json.loads(line)
             result = geo_filter.filter_event(event)
-            
+
             if result.confidence >= args.min_confidence:
                 event['geo_match'] = {
                     'is_gta': result.is_gta,
                     'confidence': result.confidence,
                     'match_reason': result.match_reason,
                 }
-                gta_events.append(event)
-    
-    # Save filtered events
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    with open(args.output, 'w', encoding='utf-8') as f:
-        for event in gta_events:
-            f.write(json.dumps(event) + '\n')
-    
-    logger.info(f"Saved {len(gta_events)} GTA events to {args.output}")
+                fout.write(json.dumps(event) + '\n')
+                gta_count += 1
+
+    logger.info(f"Saved {gta_count} GTA events to {args.output}")
     
     # Summary
     print("\n" + "=" * 60)
@@ -398,7 +396,7 @@ def main():
     print(f"  Coordinates: {stats['coordinate_matches']}")
     print(f"  Locality name: {stats['locality_matches']}")
     print(f"  Region (Ontario): {stats['region_matches']}")
-    print(f"\nFiltered events (conf >= {args.min_confidence}): {len(gta_events)}")
+    print(f"\nFiltered events (conf >= {args.min_confidence}): {gta_count}")
     
     return 0
 

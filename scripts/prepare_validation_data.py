@@ -19,14 +19,19 @@ VALIDATION_UI = PROJECT_ROOT / "validation_ui"
 MAX_EVENTS_PER_DOMAIN = 50
 
 
-def load_events_by_domain(events_path: Path) -> dict[str, list[dict]]:
-    """Load events grouped by domain."""
+def load_events_by_domain(events_path: Path,
+                          domain_set: set[str]) -> dict[str, list[dict]]:
+    """Load events grouped by domain, only for domains in domain_set.
+
+    Streams the NDJSON file line-by-line and caps at MAX_EVENTS_PER_DOMAIN
+    per domain. Only keeps events for domains we actually need.
+    """
     events_by_domain = defaultdict(list)
-    
+
     if not events_path.exists():
         print(f"Warning: Events file not found: {events_path}")
         return events_by_domain
-    
+
     with open(events_path, 'r', encoding='utf-8') as f:
         for line in f:
             if not line.strip():
@@ -34,8 +39,9 @@ def load_events_by_domain(events_path: Path) -> dict[str, list[dict]]:
             try:
                 event = json.loads(line)
                 domain = event.get('domain', '')
-                if domain and len(events_by_domain[domain]) < MAX_EVENTS_PER_DOMAIN:
-                    # Extract key fields only
+                if domain not in domain_set:
+                    continue
+                if len(events_by_domain[domain]) < MAX_EVENTS_PER_DOMAIN:
                     events_by_domain[domain].append({
                         'name': event.get('name', 'Untitled'),
                         'url': event.get('url') or event.get('source_url', ''),
@@ -47,7 +53,7 @@ def load_events_by_domain(events_path: Path) -> dict[str, list[dict]]:
                     })
             except json.JSONDecodeError:
                 continue
-    
+
     return events_by_domain
 
 
@@ -102,26 +108,39 @@ def main():
         print("Run the scoring pipeline first to generate domain_scores.csv")
         return 1
 
-    print(f"Loading events from: {args.events}")
-    events_by_domain = load_events_by_domain(args.events)
-    print(f"  Loaded events for {len(events_by_domain)} domains")
-
     print(f"Loading domains from: {args.input}")
     domains = load_domain_scores(args.input)
-    
+
+    # Build domain set so we only load events for known domains
+    domain_set = {d['domain'] for d in domains if d.get('domain')}
+
+    print(f"Loading events from: {args.events}")
+    events_by_domain = load_events_by_domain(args.events, domain_set)
+    print(f"  Loaded events for {len(events_by_domain)} domains")
+
     # Merge events into domains
     for domain in domains:
         domain['events'] = events_by_domain.get(domain['domain'], [])
-    
+
+    # Free the events dict — no longer needed after merge
+    del events_by_domain
+
     # Sort by confidence score descending within each classification
     domains.sort(key=lambda d: (-d['confidence_score'], d['domain']))
 
     # Ensure output directory exists
     args.output.parent.mkdir(parents=True, exist_ok=True)
 
+    # Write as streaming JSON array to avoid building the full serialized
+    # string in memory at once
     print(f"Writing {len(domains)} domains to: {args.output}")
     with open(args.output, 'w', encoding='utf-8') as f:
-        json.dump(domains, f, indent=2)
+        f.write('[\n')
+        for i, domain in enumerate(domains):
+            if i > 0:
+                f.write(',\n')
+            json.dump(domain, f)
+        f.write('\n]')
 
     # Summary
     by_class = {}

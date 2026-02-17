@@ -424,32 +424,40 @@ def main():
     
     # Create output directory
     args.output.mkdir(parents=True, exist_ok=True)
-    
-    # Process files
-    all_events = []
-    
-    for part_path in part_files:
-        if not part_path.exists():
-            logger.warning(f"File not found: {part_path}")
-            continue
-        
-        logger.info(f"\nProcessing {part_path.name}...")
-        
-        events = list(extractor.process_part_file(part_path, limit=args.limit))
-        logger.info(f"Extracted {len(events)} events from {part_path.name}")
-        
-        all_events.extend(events)
-        
-        if args.limit and len(all_events) >= args.limit:
-            break
-    
-    # Save events
+
+    # Process files - stream directly to disk to avoid OOM
     output_path = args.output / "extracted_events.ndjson"
+    sample_events = []  # Keep only a few samples for summary
+    total_written = 0
+
     with open(output_path, 'w', encoding='utf-8') as f:
-        for event in all_events:
-            f.write(orjson.dumps(event.to_dict()).decode() + '\n')
-    
-    logger.info(f"\nSaved {len(all_events)} events to {output_path}")
+        for part_path in part_files:
+            if not part_path.exists():
+                logger.warning(f"File not found: {part_path}")
+                continue
+
+            logger.info(f"\nProcessing {part_path.name}...")
+            part_count = 0
+
+            for event in extractor.process_part_file(part_path, limit=args.limit):
+                # Write directly to disk
+                f.write(orjson.dumps(event.to_dict()).decode() + '\n')
+                total_written += 1
+                part_count += 1
+
+                # Keep a few samples for summary
+                if len(sample_events) < 5:
+                    sample_events.append(event)
+
+                if args.limit and total_written >= args.limit:
+                    break
+
+            logger.info(f"Extracted {part_count} events from {part_path.name}")
+
+            if args.limit and total_written >= args.limit:
+                break
+
+    logger.info(f"\nSaved {total_written} events to {output_path}")
     
     # Print summary
     print("\n" + "=" * 60)
@@ -464,7 +472,7 @@ def main():
     
     # Sample events
     print("\nSample events:")
-    for event in all_events[:5]:
+    for event in sample_events:
         loc_str = ""
         if event.location:
             if event.location.address_locality:

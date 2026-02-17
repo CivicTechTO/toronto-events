@@ -330,17 +330,17 @@ def analyze_domains(lookup_path: Path, stats_path: Path = None) -> list[DomainAn
         'neutral': 0,
     }
     
-    # Count total lines for progress bar
-    with open(lookup_path, 'r', encoding='utf-8') as f:
-        total_lines = sum(1 for _ in f) - 1  # Subtract header
-    
+    # Estimate line count from file size for progress bar (avoids double read)
+    file_size = lookup_path.stat().st_size
+    est_lines = file_size // 80  # ~80 bytes per CSV row estimate
+
     with open(lookup_path, 'r', encoding='utf-8') as f:
         reader = csv.reader(f)
         header = next(reader)
-        
+
         # Wrap with progress bar if tqdm available
         if tqdm:
-            reader = tqdm(reader, total=total_lines, desc="Analyzing domains", 
+            reader = tqdm(reader, total=est_lines, desc="Analyzing domains",
                          unit="domains", dynamic_ncols=True)
         
         for row in reader:
